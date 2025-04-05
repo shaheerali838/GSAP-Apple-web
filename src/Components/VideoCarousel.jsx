@@ -77,8 +77,8 @@ const VideoCarousel = () => {
         },
         onComplete: () => {
           if (isPlaying) {
-            gsap.to(videoDivRef.current[videoId], { width: "3rem" });
-            gsap.to(span[videoId], { backgroundColor: "afafaf" });
+            gsap.to(videoDivRef.current[videoId], { width: "12px" });
+            gsap.to(span[videoId], { backgroundColor: "#afafaf" });
           }
         },
       });
@@ -90,13 +90,12 @@ const VideoCarousel = () => {
           videoRef.current[videoId].currentTime /
             highlightsSlides[videoId].videoDuration
         );
-
-        if (isPlaying) {
-          gsap.ticker.add(animUpdate);
-        } else {
-          gsap.ticker.remove(animUpdate);
-        }
       };
+      if (isPlaying) {
+        gsap.ticker.add(animUpdate);
+      } else {
+        gsap.ticker.remove(animUpdate);
+      }
     }
   }, [videoId, startPlay]);
 
