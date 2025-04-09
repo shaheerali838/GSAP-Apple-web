@@ -9,16 +9,8 @@ Title: Apple iPhone 15 Pro Max Black
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-function Model(props) {
-  const { nodes, materials } = useGLTF("/models/scene.glb");
-  // Check if the model is loaded
-  React.useEffect(() => {
-    if (nodes) {
-      setIsLoaded(true);
-      console.log("Model loaded:", nodes); // Log the model if loaded
-    }
-  }, [nodes]);
-
+function Iphone(props) {
+  const { nodes, materials } = useGLTF("models/scene.glb");
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -242,5 +234,5 @@ function Model(props) {
   );
 }
 
-export default Model;
-useGLTF.preload("/models/scene.glb");
+export default Iphone;
+useGLTF.preload("models/scene.glb");
