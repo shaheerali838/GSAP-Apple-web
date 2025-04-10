@@ -3,11 +3,11 @@ import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import ModelView from "./ModelView";
 import { yellowImg } from "../utils";
+import { Canvas } from "@react-three/fiber";
 
 import * as THREE from "three";
 import { models, sizes } from "../constants";
 import { View } from "@react-three/drei";
-import { label } from "three/tsl";
 
 const Model = () => {
   useGSAP(() => {
@@ -36,7 +36,7 @@ const Model = () => {
   return (
     <section className="common-padding ">
       <div className="screen-max-width">
-        <h1 id="heading" className="section-heading ">
+        <h1 id="heading" className="section-heading mb-24">
           Take a Closer Look.
         </h1>
         <div className="flex flex-col items-center mt-5">
@@ -59,8 +59,8 @@ const Model = () => {
               item={model}
               size={size}
             />
-            <canvas
-              className="w-full h-full z-[-1]"
+            <Canvas
+              className="w-full h-full "
               style={{
                 position: "fixed",
                 top: 0,
@@ -69,13 +69,13 @@ const Model = () => {
                 right: 0,
                 overflow: "hidden",
               }}
-              eventsource={document.getElementById("root")}
+              eventSource={document.getElementById("root")}
             >
               <View />
-            </canvas>
+            </Canvas>
           </div>
           <div className="mx-auto w-full">
-            <p className="text-sm font-light text-center">{model.title}</p>
+            <p className="text-sm font-light text-center mb-5">{model.title}</p>
             <div className="flex-center">
               <ul className="color-container">
                 {models.map((item, i) => (
