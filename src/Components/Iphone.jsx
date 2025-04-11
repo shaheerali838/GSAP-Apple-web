@@ -12,7 +12,6 @@ function Iphone(props) {
         material={materials.hUlRcbieVuIiOXG}
         scale={0.01}
       />
-      {console.log(123)}
       <mesh
         castShadow
         receiveShadow
