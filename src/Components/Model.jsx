@@ -1,66 +1,67 @@
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import React, { useRef, useState } from "react";
-import ModelView from "./ModelView";
+import { useRef, useState } from "react";
 import { yellowImg } from "../utils";
 import { Canvas } from "@react-three/fiber";
-
-import * as THREE from "three";
-import { models, sizes } from "../constants";
 import { View } from "@react-three/drei";
 
-const Model = () => {
-  useGSAP(() => {
-    gsap.to("#heading", { position: 0, opacity: 1 });
-  }, []);
+import gsap from "gsap";
+import ModelView from "./ModelView";
+import * as THREE from "three";
+import { models, sizes } from "../constants";
 
+const Model = () => {
   const [size, setSize] = useState("small");
   const [model, setModel] = useState({
-    title: "Iphone 15 Pro in Ntural Titanium",
+    title: "IPhone 15 Pro in Natural Titanium",
     color: ["#8f8a81", "#ffe7b9", "#6f6c64"],
-    img: yellowImg,
+    Image: yellowImg,
   });
 
-  // Camera controll for the model view
-  const cameraControllSmall = useRef();
-  const cameraControllLarge = useRef();
+  // Camera Control for the Model View
+  const cameraControlsmall = useRef();
+  const cameraControlLarge = useRef();
 
-  // Model
+  // Models
   const small = useRef(new THREE.Group());
-  const Large = useRef(new THREE.Group());
+  const large = useRef(new THREE.Group());
 
   //Rotation
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
 
+  useGSAP(() => {
+    gsap.to("#heading", { y: 0, opacity: 1 });
+  }, []);
   return (
-    <section className="common-padding ">
+    <section className="common-padding">
       <div className="screen-max-width">
-        <h1 id="heading" className="section-heading mb-24">
-          Take a Closer Look.
+        <h1 id="heading" className="section-heading">
+          Take a closer Look.
         </h1>
         <div className="flex flex-col items-center mt-5">
-          <div className="w-full h-[75vh] md:h-[90vh] mb-3 overflow-hidden relative ">
+          <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative">
             <ModelView
               index={1}
               groupRef={small}
               gsapType="view1"
-              controlRef={cameraControllSmall}
+              controlRef={cameraControlsmall}
               setRotationState={setSmallRotation}
               item={model}
               size={size}
             />
+
             <ModelView
               index={2}
-              groupRef={Large}
+              groupRef={large}
               gsapType="view2"
-              controlRef={cameraControllLarge}
+              controlRef={cameraControlLarge}
               setRotationState={setLargeRotation}
               item={model}
               size={size}
             />
+
             <Canvas
-              className="w-full h-full "
+              className="w-full h-full"
               style={{
                 position: "fixed",
                 top: 0,
@@ -71,7 +72,7 @@ const Model = () => {
               }}
               eventSource={document.getElementById("root")}
             >
-              <View />
+              <View.Port />
             </Canvas>
           </div>
           <div className="mx-auto w-full">
