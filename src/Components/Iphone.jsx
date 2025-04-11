@@ -22,7 +22,6 @@ function Iphone(props) {
       material[1].needsUpdate = true;
     });
   }, [materials, props.item]);
-
   return (
     <group {...props} dispose={null}>
       <mesh
