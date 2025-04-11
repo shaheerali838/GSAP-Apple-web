@@ -32,7 +32,7 @@ const ModelView = ({
         enablePan={false}
         rotateSpeed={0.4}
         target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle)}
+        onEnd={() => setRotationState(controlRef.current.getAzimuthalAngle())}
       />
       <group
         ref={groupRef}
@@ -46,7 +46,11 @@ const ModelView = ({
             </Html>
           }
         >
-          <Iphone />
+          <Iphone
+            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
+            item={item}
+            size={size}
+          />
         </Suspense>
       </group>
     </View>
