@@ -85,7 +85,6 @@ const VideoCarousel = () => {
       if (videoId === 0) {
         anim.restart();
       }
-
       const animUpdate = () => {
         anim.progress(
           videoRef.current[videoId].currentTime /
