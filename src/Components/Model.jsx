@@ -34,13 +34,13 @@ const Model = () => {
 
   useEffect(() => {
     if (size === "large") {
-      animateWithGsapTimeLine(tL, small, smallRotation, "#view1", "#view2", {
+      animateWithGsapTimeLine(tL, smallRotation, small, "#view1", "#view2", {
         transform: "translateX(-100%)",
         duration: 2,
       });
     }
     if (size === "small") {
-      animateWithGsapTimeLine(tL, large, largeRotation, "#view2", "#view1", {
+      animateWithGsapTimeLine(tL, largeRotation, large, "#view2", "#view1", {
         transform: "translateX(0%)",
         duration: 2,
       });
