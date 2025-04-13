@@ -1,27 +1,22 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# OS generated files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
 
-# Sentry Config File
-.env.sentry-build-plugin
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Node dependencies (if you ever use npm for GSAP or any tools)
+node_modules/
+
+# Build/Dist folders (in case you add build process later)
+dist/
+build/
+
+# Environment variables (if you decide to use dotenv or similar)
+.env
+
+# Cache files
+*.cache
