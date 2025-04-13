@@ -5,7 +5,7 @@ import * as THREE from "three";
 function Iphone(props) {
   const { nodes, materials } = useGLTF("/models/scene.glb");
 
-  const texture = useTexture(props.item.img);
+  const texture = useTexture(props.item.Image);
 
   useEffect(() => {
     Object.entries(materials).map((material) => {
