@@ -40,14 +40,6 @@ const ModelView = ({
         name={`${index === 1}? 'small':'large'`}
         position={[0, 0, 0]}
       >
-<<<<<<< HEAD
-        <Suspense fallback={<Loader />}>
-          <Iphone
-            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
-            item={item}
-            size={size}
-          />
-=======
         <Suspense
           fallback={
             <Html center>
@@ -56,7 +48,6 @@ const ModelView = ({
           }
         >
           <Iphone />
->>>>>>> parent of 3f207f9 (color changing effect added)
         </Suspense>
       </group>
     </View>
