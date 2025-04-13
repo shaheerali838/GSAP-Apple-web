@@ -6,7 +6,7 @@ export const animateWithGsapTimeLine = (
   secondTarget,
   animationProps
 ) => {
-  timeline.to(rotationRef.current.rotation, {
+  timeline.to(rotationRef.current.rotationRef, {
     y: rotationState,
     duration: 1,
     ease: "power2.inOut",
