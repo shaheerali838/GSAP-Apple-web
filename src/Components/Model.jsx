@@ -8,7 +8,7 @@ import gsap from "gsap";
 import ModelView from "./ModelView";
 import * as THREE from "three";
 import { models, sizes } from "../constants";
-import { animateWithGsapTimeLine } from "../utils/animations";
+import { animateWithGsapTimeline } from "../utils/animations";
 
 const Model = () => {
   const [size, setSize] = useState("small");
@@ -34,14 +34,15 @@ const Model = () => {
 
   useEffect(() => {
     if (size === "large") {
-      animateWithGsapTimeLine(tL, smallRotation, small, "#view1", "#view2", {
+      animateWithGsapTimeline(tL, small, smallRotation, "#view1", "#view2", {
         transform: "translateX(-100%)",
         duration: 2,
       });
     }
+
     if (size === "small") {
-      animateWithGsapTimeLine(tL, largeRotation, large, "#view2", "#view1", {
-        transform: "translateX(0%)",
+      animateWithGsapTimeline(tL, large, largeRotation, "#view2", "#view1", {
+        transform: "translateX(0)",
         duration: 2,
       });
     }

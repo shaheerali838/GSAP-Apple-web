@@ -1,4 +1,4 @@
-export const animateWithGsapTimeLine = (
+export const animateWithGsapTimeline = (
   timeline,
   rotationRef,
   rotationState,
@@ -6,13 +6,7 @@ export const animateWithGsapTimeLine = (
   secondTarget,
   animationProps
 ) => {
-<<<<<<< HEAD
-  timeline.to(rotationRef.current.rotationRef, {
-=======
-  console.time("GSAP timeline");
-
   timeline.to(rotationRef.current.rotation, {
->>>>>>> parent of 7349f72 (no error still error)
     y: rotationState,
     duration: 1,
     ease: "power2.inOut",
@@ -20,6 +14,4 @@ export const animateWithGsapTimeLine = (
 
   timeline.to(firstTarget, { ...animationProps, ease: "power2.inOut" }, "<");
   timeline.to(secondTarget, { ...animationProps, ease: "power2.inOut" }, "<");
-
-  console.timeEnd("GSAP timeline");
 };
