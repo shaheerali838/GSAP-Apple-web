@@ -51,53 +51,63 @@ const VideoCarousel = () => {
     setLoadedData((pre) => [...pre, e]);
 
   useEffect(() => {
-    let currentProgress = 0;
-    let span = videoSpanRef.current;
-    if (span[videoId]) {
-      //animate the progress of the vid
-      let anim = gsap.to(span[videoId], {
-        onUpdate: () => {
-          const progress = Math.ceil(anim.progress() * 100);
-          if (progress != currentProgress) {
-            currentProgress = progress;
+    const span = videoSpanRef.current[videoId];
+    const video = videoRef.current[videoId];
+    const duration = highlightsSlides[videoId]?.videoDuration;
 
-            gsap.to(videoDivRef.current[videoId], {
-              width:
-                window.innerWidth < 760
-                  ? "10vw"
-                  : window.innerWidth < 1200
-                  ? "10vw"
-                  : "4vw",
-            });
-            gsap.to(span[videoId], {
-              width: `${currentProgress}%`,
-              backgroundColor: "white",
-            });
-          }
-        },
-        onComplete: () => {
-          if (isPlaying) {
-            gsap.to(videoDivRef.current[videoId], { width: "12px" });
-            gsap.to(span[videoId], { backgroundColor: "#afafaf" });
-          }
-        },
-      });
-      if (videoId === 0) {
-        anim.restart();
-      }
-      const animUpdate = () => {
-        anim.progress(
-          videoRef.current[videoId].currentTime /
-            highlightsSlides[videoId].videoDuration
-        );
-      };
-      if (isPlaying) {
-        gsap.ticker.add(animUpdate);
-      } else {
-        gsap.ticker.remove(animUpdate);
-      }
+    // 🛑 Wait until ALL refs are mounted
+    if (!span || !video || !duration) {
+      return;
     }
-  }, [videoId, startPlay]);
+
+    let currentProgress = 0;
+
+    let anim = gsap.to(span, {
+      onUpdate: () => {
+        const progress = Math.ceil(anim.progress() * 100);
+        if (progress !== currentProgress) {
+          currentProgress = progress;
+
+          gsap.to(videoDivRef.current[videoId], {
+            width:
+              window.innerWidth < 760
+                ? "10vw"
+                : window.innerWidth < 1200
+                ? "10vw"
+                : "4vw",
+          });
+
+          gsap.to(span, {
+            width: `${currentProgress}%`,
+            backgroundColor: "white",
+          });
+        }
+      },
+      onComplete: () => {
+        if (isPlaying) {
+          gsap.to(videoDivRef.current[videoId], { width: "12px" });
+          gsap.to(span, { backgroundColor: "#afafaf" });
+        }
+      },
+    });
+
+    if (videoId === 0) anim.restart();
+
+    const animUpdate = () => {
+      if (video && duration) {
+        anim.progress(video.currentTime / duration);
+      }
+    };
+
+    if (isPlaying) {
+      gsap.ticker.add(animUpdate);
+    }
+
+    return () => {
+      gsap.ticker.remove(animUpdate);
+      anim.kill();
+    };
+  }, [videoId, isPlaying, highlightsSlides]);
 
   const handleProcess = (type, i) => {
     switch (type) {
